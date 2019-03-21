@@ -77,3 +77,28 @@ function d_saveNewWebsite(websiteName, websiteURL) {
 
   return promiseObj;
 }
+
+function d_saveNewUser(params) {
+
+  var promiseObj = new Promise(function(resolve, reject) {
+    request = $.ajax({
+      url: "/screen-capture/BackEnd/requests/register.php",
+      type: "post",
+      data: params,
+      success: function(response, textStatus, jqXHR) {
+        // Log a message to the console
+
+        var user = JSON.parse(response);
+
+        console.log(user);
+        resolve(user);
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert("some error");
+        reject(errorThrown);
+      }
+    });
+  });
+
+  return promiseObj;
+}
